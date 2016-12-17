@@ -1,0 +1,6 @@
+# emacs temp files
+\#**.*\#
+**.*~
+
+# npm modules
+node_modules/
