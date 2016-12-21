@@ -1,0 +1,76 @@
+/* normalize */
+:global(html) {
+  font-size: 10px;
+}
+/* end of normalize*/
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+@media (min-width: 576px) {
+  .container {
+    width: 540px;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 720px;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 960px;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1140px;
+    max-width: 100%;
+  }
+}
+
+.container--row {
+  flex-direction: row
+}
+
+.container--column {
+  flex-direction: column;
+}
+
+/* navbar */
+.navbar {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.navbar__title-img {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+/* end of navbar */
+
+/* used for test usage */
+.aaa {
+  padding-left: 50px;
+}
+
+.bbb {
+  margin-left: -50px;
+}
+/* end of used for test usage */

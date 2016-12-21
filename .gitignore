@@ -1,6 +1,14 @@
+# npm dependencies
+node_modules/
+
+# generated files
+/public
+*.log
+
 # emacs temp files
 \#**.*\#
 **.*~
+.#**.*
 
-# npm modules
-node_modules/
+# used by nohup
+nohup.out
