@@ -43,7 +43,8 @@
 }
 
 .container--row {
-  flex-direction: row
+  flex-direction: row;
+  align-items: center;
 }
 
 .container--column {
@@ -63,7 +64,24 @@
   height: 2.4rem;
 }
 
+.navbar__title-text {
+  padding: 6px 12px;
+  font-size: 1.6rem;
+}
+
+.navbar__item {
+  display: inline-flex;
+}
+
 /* end of navbar */
+
+/* button control */
+.button {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 1.6rem;
+}
+/* end of button control */
 
 /* used for test usage */
 .aaa {
@@ -73,4 +91,29 @@
 .bbb {
   margin-left: -50px;
 }
+
+.ccc {
+  display: inline-block;
+}
+
+.body {
+  width: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.aside {
+  width: 100px;
+  height: 150px;
+  float: left;
+  background: #f66;
+}
+
+.main {
+  height: 200px;
+  background: #fcc;
+}
+
 /* end of used for test usage */
+
+

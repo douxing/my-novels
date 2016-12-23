@@ -43,8 +43,8 @@ class App extends Component {
       </li>;
     } else if (account.session_status === 'none') {
       avatarView = <span className="dropdown">
-        <Link to="/Register">Register</Link>
-        <Link to="/login">Login</Link>
+        <Link to="/Register" className={`${styles['button']}`}>Register</Link>
+        <Link to="/login" className={`${styles['button']}`}>Login</Link>
       </span>;
     } else {
       // should never happen
@@ -53,15 +53,16 @@ class App extends Component {
 
     return <div className={`${styles['container']} ${styles['container--column']}`}>
       <div className={`${styles['navbar']}`}>
-        <span name='left-menu-container'>
+        <span name='left-menu-container' className={`${styles['navbar__item']}`}>
           <img src='/public/icon.jpg' className={`${styles['navbar__title-img']}`}></img>
+          <span className={`${styles['navbar__title-text']}`}>My Novels</span>
         </span>
-        <span name='right-menu-container'>
+        <span name='right-menu-container' className={`${styles['navbar__item']}`}>
           {avatarView}
         </span>
       </div>
 
-      <div className={``}>
+      <div className={`hello`}>
         { this.props.children }
       </div>
 
@@ -73,6 +74,13 @@ class App extends Component {
             </div>
           </div>
         </div>
+      </div>
+    </div>;
+
+    let bbbb = <div className={`${styles['body']}`}>
+      <div className={`${styles['aside']}`}></div>
+      <div className={`${styles['main']}`}>
+        hello, world
       </div>
     </div>;
   }
