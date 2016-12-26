@@ -75,6 +75,13 @@
 
 /* end of navbar */
 
+/* general configuration */
+a {
+  color: #337ab7;
+  text-decoratrion: none;
+}
+/* end of general configuration */
+
 /* button control */
 .button {
   display: inline-block;

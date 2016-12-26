@@ -8,12 +8,14 @@ import reducers from './reducers';
 const store = createStore(reducers);
 
 import App from './containers/app';
+import Login from './containers/login';
 
 import PageNotFound from './components/page_not_found';
 
 render(<Provider store={store}>
   <Router history={browserHistory}>
     <Route path='/' component={App}>
+      <Route path='login' component={Login}></Route>
     </Route>
     <Route path='*' component={PageNotFound}>
       /* using this makes the root route match */

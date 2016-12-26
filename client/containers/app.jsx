@@ -66,6 +66,7 @@ class App extends Component {
         { this.props.children }
       </div>
 
+      {/*
       <div className={`${styles['container']} ${styles['aaa']}`}>
         <div className={`${styles['bbb']}`}>
           <div className={`${styles['aaa']}`}>
@@ -75,6 +76,7 @@ class App extends Component {
           </div>
         </div>
       </div>
+      */}
     </div>;
 
     let bbbb = <div className={`${styles['body']}`}>
