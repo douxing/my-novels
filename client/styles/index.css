@@ -2,6 +2,24 @@
 :global(html) {
   font-size: 10px;
 }
+
+:global(*) {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:global(*:before) {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:global(*:after) {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 /* end of normalize*/
 
 .container {
@@ -90,9 +108,68 @@ a {
 }
 /* end of button control */
 
+/* login/register related */
+
+.login-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  width: 35rem;
+}
+
+.login-container__title-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.login-container__form {
+  margin: 1rem 0;
+  padding: 0.2em 0;
+  border: 1px solid #d5d5d5;
+  border-radius: 0.3em;
+}
+
+.login-container__form-item {
+  padding: 0 1rem;
+}
+
+.login-container__form-item input {
+  height: 3rem;
+  font-size: 1.8rem;
+  width: 100%;
+  border: 0;
+  outline: none;
+}
+
+.login-container__form-item + .login-container__form-item {
+  border-top: 1px solid #e8e8e8;
+}
+
+.login-container__login-button-wrapper {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.login-container__login-button {
+  width: 100%;
+  height: 2.5rem;
+  font-size: 1.8rem;
+  border: 0;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.login-container__login-button:hover {
+  background: #3399cc;
+}
+
+/* end of login/register related */
+
 /* used for test usage */
 .aaa {
-  padding-left: 50px;
+  display: inline-block;
 }
 
 .bbb {
@@ -122,5 +199,3 @@ a {
 }
 
 /* end of used for test usage */
-
-

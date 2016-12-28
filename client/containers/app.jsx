@@ -62,7 +62,7 @@ class App extends Component {
         </span>
       </div>
 
-      <div className={`hello`}>
+      <div className={`root-wrapper`}>
         { this.props.children }
       </div>
 

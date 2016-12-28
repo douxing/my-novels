@@ -7,10 +7,27 @@ import {
   ACCOUNT_SET
 } from '../actions/types';
 
+import styles from '../styles/index.css';
+
 class Login extends Component {
   render () {
-    return <div>
-      Hello, world;
+    return <div className={`${styles['login-container']}`}>
+      <div className={`${styles['login-container__title-wrapper']}`}>
+        <h2>用户登录</h2>
+      </div>
+      <div className={`${styles['login-container__form']}`}>
+        <div className={`${styles['login-container__form-item']}`}>
+          <input type='text' placeholder='邮箱或手机号码'>
+          </input>
+        </div>
+        <div className={`${styles['login-container__form-item']}`}>
+          <input type='text' placeholder='登录密码'>
+          </input>
+        </div>
+      </div>
+      <div className={`${styles['login-container__login-button-wrapper']}`}>
+        <button className={`${styles['login-container__login-button']}`}>登录</button>
+      </div>
     </div>;
   }
 }
@@ -22,7 +39,28 @@ const mapStateToProps = (state, ownProps = {}) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps = {}) => {
-  return {};
+  return {
+    async loginWithCookie () {
+      dispatch({
+        type: ACCOUNT_SET,
+        payload: {
+          session_status: 'loginning'
+        }
+      });
+
+      let res = await login('cookie');
+      if (res && res.data) {
+        dispatch({
+          type: ACCOUNT_SET,
+          payload: {
+            id: res.data.id,
+            ...res.data.attributes,
+            session_status: 'login'
+          }
+        });
+      }
+    }
+  };
 };
 
 const LoginContainer = connect(
