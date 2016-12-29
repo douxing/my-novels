@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "pm2 start webpack -- -w --progress"
+    "webpack": "pm2 start webpack -- -w --progress",
+    "seeds": "node ./scripts/seeds"
   },
   "author": "",
   "license": "ISC",

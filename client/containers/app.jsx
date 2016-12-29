@@ -37,7 +37,7 @@ class App extends Component {
         <li><Link to='#' onClick={this.onLogout}>Logout</Link></li>
         </ul>
       </li>;
-    } else if (account.session_status === 'logginning') {
+    } else if (account.session_status === 'loginning') {
       avatarView = <li>
         <Link>Logging in...</Link>
       </li>;
