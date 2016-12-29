@@ -1,5 +1,4 @@
-const config = require('./config');
-
+const config = require('./server/config');
 const express = require('express');
 const app = express();
 
@@ -10,6 +9,7 @@ app.set('views', './server/views');
 
 app.use(require('./server/routes'));
 
-app.listen(config.PORT, function () {
-  console.log(`application started on port: ${config.PORT}`);
+let PORT = config.PORT;
+app.listen(PORT, function () {
+  console.log(`[${config.NODE_ENV}] application started on port: ${PORT}`);
 });

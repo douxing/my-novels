@@ -9,6 +9,10 @@ import {
 
 import styles from '../styles/index.css';
 
+import {
+  ACCOUNT_COOKIE
+} from '../config';
+
 class Login extends Component {
   render () {
     return <div className={`${styles['login-container']}`}>
@@ -58,6 +62,39 @@ const mapDispatchToProps = (dispatch, ownProps = {}) => {
             session_status: 'login'
           }
         });
+      }
+    },
+
+    async loginWithPassword (email, password) {
+      dispatch({
+        type: ACCOUNT_SET,
+        payload: {
+          session_status: 'loginning'
+        }
+      });
+
+      let res = await login('password', {
+        email, password
+      });
+
+      if (res && res.data) {
+        dispatch({
+          type: ACCOUNT_SET,
+          payload: {
+            id: res.data.id,
+            ...res.data.attributes,
+            session_status: 'login'
+          }
+        });
+      } else {
+        Messenger().post({
+          message: 'login with password failed',
+          type: 'error',
+          showCloseButton: true
+        });
+        
+        Cookies.remove(ACCOUNT_COOKIE);
+        
       }
     }
   };

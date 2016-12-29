@@ -1,7 +1,3 @@
-if (!process.env.PGCONNSTR) {
-  throw 'set PGCONNSTR before you go...';
-}
-
 module.exports = {
   apps: [{
     name: 'my-novel-0',
