@@ -24,10 +24,10 @@ class Login extends Component {
     event.preventDefault();
 
     let { loginWithPassword } = this.props;
-    let email = this.nameInput.value;
+    let login_name = this.nameInput.value;
     let password = this.passwordInput.value;
 
-    loginWithPassword(email, password);
+    loginWithPassword(login_name, password);
   }
 
   constructor (props) {
@@ -41,8 +41,18 @@ class Login extends Component {
       account, account_token, loginWithCookie
     } = this.props;
 
-    if (account_token && account.login_status === 'none') {
+    if (account_token && account.session_status === 'none') {
       loginWithCookie();
+    }
+  }
+
+  componentDidUpdate () {
+    let {
+      account, account_token, redirect_path
+    } = this.props;
+
+    if (account_token && account.session_status === 'login') {
+      browserHistory.push(redirect_path);
     }
   }
 
@@ -97,6 +107,8 @@ const mapDispatchToProps = (dispatch, ownProps = {}) => {
             session_status: 'login'
           }
         });
+
+        browserHistory.push(redirect_path);
       } else {
         Messenger().post({
           message: 'login with cookie failed',
@@ -116,7 +128,7 @@ const mapDispatchToProps = (dispatch, ownProps = {}) => {
       }
     },
 
-    async loginWithPassword (email, password) {
+    async loginWithPassword (login_name, password) {
       dispatch({
         type: ACCOUNT_SET,
         payload: {
@@ -125,7 +137,7 @@ const mapDispatchToProps = (dispatch, ownProps = {}) => {
       });
 
       let res = await login('password', {
-        email, password
+        login_name, password
       });
 
       if (res && res.data) {

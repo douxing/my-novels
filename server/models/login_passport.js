@@ -1,6 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const User = sequelize.models.User;
-  const LoginName = sequelize.define('LoginName', {
+  const LoginPassport = sequelize.define('LoginPassport', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV1,
@@ -12,12 +11,18 @@ module.exports = function (sequelize, DataTypes) {
       unique: true
     }
   }, {
-    tableName: 'login_names',
+    tableName: 'login_passports',
     timestamps: true,
     underscored: true
   });
 
-  LoginName.belongsTo(User);
+  const User = sequelize.models.User;
+  LoginPassport.belongsTo(User, {
+    as: 'user'
+  });
+  User.hasMany(LoginPassport, {
+    as: 'login_passports'
+  });
 
-  return LoginName;
+  return LoginPassport;
 };

@@ -2,7 +2,7 @@ const co = require('co');
 const crypto = require('crypto');
 
 // set connection string before require
-// process.env.PGCONNSTR = 'postgres://dx@localhost/my-novels-dev';
+// process.env.PGCONNSTR = 'postgres://name@localhost/my-novels-dev';
 if (!process.env.PGCONNSTR) {
   throw '[seed error] set environment PGCONNSTR before you go...'
 }
@@ -18,22 +18,19 @@ co(function * () {
                               .update(password_salt)
                               .digest('base64');
 
-
-  //     email: 'douxing1983@163.com',
-
   let users = {};
   [
-    users.dx
+    users.admin
   ] = yield [db.User.create({
-    nickname: 'dx',
+    nickname: 'admin',
     password_salt: password_salt,
     hashed_password: hashed_password,
   })];
 
-  users.dx.login_names = [];
-  users.dx.login_names[0] = yield db.LoginName.create({
-    login_name: 'dou.xing1983@163.com',
-    user_id: users.dx.id
+  users.admin.login_passports = [];
+  users.admin.login_passports[0] = yield db.LoginPassport.create({
+    login_name: 'admin@unknown.com',
+    user_id: users.admin.id
   });
 
   console.info('Seeds done...');

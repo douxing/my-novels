@@ -9,7 +9,7 @@ app.set('views', './server/views');
 
 app.use(require('./server/routes'));
 
-let PORT = config.PORT;
+let PORT = Number.parseInt(config.PORT);
 app.listen(PORT, function () {
   console.log(`[${config.NODE_ENV}] application started on port: ${PORT}`);
 });

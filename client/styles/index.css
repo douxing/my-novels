@@ -83,6 +83,7 @@
 }
 
 .navbar__title-text {
+  display: inline-block;
   padding: 6px 12px;
   font-size: 1.6rem;
 }
@@ -99,14 +100,6 @@ a {
   text-decoratrion: none;
 }
 /* end of general configuration */
-
-/* button control */
-.button {
-  display: inline-block;
-  padding: 6px 12px;
-  font-size: 1.6rem;
-}
-/* end of button control */
 
 /* login/register related */
 

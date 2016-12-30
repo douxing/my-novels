@@ -4,17 +4,13 @@ const jwt = require('jsonwebtoken');
 
 const {
   User,
-  LoginName
+  LoginPassport
 } = require('../models');
 
 const {
   ACCOUNT_COOKIE,
   HMAC_SECRET
 } = require('../config');
-
-const {
-  ACCOUNT_COOKIE
-} = require('../../config/consts');
 
 exports.login = function (req, res) {
   co(function * () {
@@ -71,30 +67,30 @@ exports.login = function (req, res) {
         return;
       }
     } else if (grant_type === 'password') {
-      let login_name = null;
-      if (req.body.email && req.body.password) {
-        let login_name = yield LoginName.findOne({
+      let login_passport = null;
+
+      if (req.body.login_name && req.body.password) {
+        login_passport = yield LoginPassport.findOne({
           where: {
-            email: req.body.email
+            login_name: req.body.login_name
           },
-          attributes: ['id', 'email']
+          include: [{
+            model: User,
+            as: 'user'
+          }]
         });
       }
 
-      if (!login_name) {
+      if (!login_passport) {
         res.status(401).json({
           errors: [{
-            title: 'unauthorized'
+            title: 'unauthorized123'
           }]
         });
         return;
       }
 
-      yield user = login_name.getUser({
-        attributes: ['id', 'nickname',
-                     'password_salt', 'hashed_password',
-                     'status', 'role', 'meta']
-      });
+      user = login_passport.user;
 
       let hashed_password = crypto.createHash('sha256')
                                   .update(req.body.password)
@@ -110,7 +106,7 @@ exports.login = function (req, res) {
         return;
       }
     } else {
-      res.status(401).end({
+      res.status(401).json({
         errors: [{
           title: 'unauthorized'
         }]
@@ -118,9 +114,10 @@ exports.login = function (req, res) {
       return;
     }
 
-    let last_login_at = user.meta.last_login_at;
-
+    user.meta = user.meta || {};
+    let last_login_at = user.meta.last_login_at || null;
     user.meta.last_login_at = now;
+
     yield user.save();
 
     res.cookie(ACCOUNT_COOKIE, jwt.sign({
@@ -130,7 +127,7 @@ exports.login = function (req, res) {
     res.status(200).json({
       data: {
         type: 'users',
-        id: user.id
+        id: `${user.id}`,
         attributes: {
           nickname: user.nickname,
           role: user.role,
@@ -141,7 +138,7 @@ exports.login = function (req, res) {
     });
   }).catch((err) => {
     console.error(`[${__filename}] error:`, err);
-    res.status(500).end({
+    res.status(500).json({
       errors: [{
         title: 'internal error'
       }]
@@ -157,7 +154,7 @@ exports.logout = function (req, res) {
     });
   }).catch((err) => {
     console.error(`[${__filename}] error:`, err);
-    res.status(500).end({
+    res.status(500).json({
       errors: [{
         title: 'internal error'
       }]
@@ -271,7 +268,7 @@ exports.destroy = function (req, res) {
     });
   }).catch((err) => {
     console.error(`[${__filename}] error:`, err);
-    res.status(500).end({
+    res.status(500).json({
       errors: [{
         title: 'internal error'
       }]

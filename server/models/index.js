@@ -3,12 +3,12 @@ const config = require('../config');
 const pg = new Sequelize(config.PGCONNSTR);
 
 const User = pg.import(`./user`);
-const LoginName = pg.import(`./login_name`);
+const LoginPassport = pg.import(`./login_passport`);
 
 const db = {
   pg,
   User,
-  LoginName
+  LoginPassport
 };
 
 module.exports = db;

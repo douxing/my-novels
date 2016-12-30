@@ -10,6 +10,10 @@ import {
 
 import styles from '../styles/index.css';
 
+import {
+  ACCOUNT_COOKIE
+} from '../config';
+
 class App extends Component {
   constructor (props) {
     super(props);
@@ -26,25 +30,19 @@ class App extends Component {
   render () {
     let avatarView = null;
     let { account } = this.props;
+
     if (account.session_status === 'login') {
-      avatarView = <li className="dropdown">
-      <Link className="dropdown-toggle" data-toggle="dropdown"
-            role="button" aria-haspopup="true"
-            aria-expanded="false">
-        {account.nickname}<span className="caret"></span>
-      </Link>
-      <ul className="dropdown-menu">
-        <li><Link to='#' onClick={this.onLogout}>Logout</Link></li>
-        </ul>
-      </li>;
+      avatarView = <span className={`${styles['navbar__item']}`}>
+        <span className={`${styles['navbar__title-text']}`}>{account.nickname}</span>
+      </span>;
     } else if (account.session_status === 'loginning') {
-      avatarView = <li>
-        <Link>Logging in...</Link>
-      </li>;
+      avatarView = <span className={`${styles['navbar__item']}`}>
+        <span className={`${styles['navbar__title-text']}`}>Loginning...</span>
+      </span>;
     } else if (account.session_status === 'none') {
-      avatarView = <span className="dropdown">
-        <Link to="/Register" className={`${styles['button']}`}>Register</Link>
-        <Link to="/login" className={`${styles['button']}`}>Login</Link>
+      avatarView = <span className={`${styles['navbar__item']}`}>
+        <Link to="/Register" className={`${styles['navbar__title-text']}`}>Register</Link>
+        <Link to="/login" className={`${styles['navbar__title-text']}`}>Login</Link>
       </span>;
     } else {
       // should never happen
@@ -65,18 +63,6 @@ class App extends Component {
       <div className={`root-wrapper`}>
         { this.props.children }
       </div>
-
-      {/*
-      <div className={`${styles['container']} ${styles['aaa']}`}>
-        <div className={`${styles['bbb']}`}>
-          <div className={`${styles['aaa']}`}>
-            <div className={`${styles['bbb']}`}>
-              leftright
-            </div>
-          </div>
-        </div>
-      </div>
-      */}
     </div>;
 
     let bbbb = <div className={`${styles['body']}`}>
@@ -97,7 +83,7 @@ const mapStateToProps = (state, ownProps = {}) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     logout () {
-      Cookies.remove('account_info');
+      Cookies.remove(ACCOUNT_COOKIE);
       dispatch({
         type: ACCOUNT_RESET
       });
