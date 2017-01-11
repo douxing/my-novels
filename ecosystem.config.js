@@ -11,12 +11,12 @@ module.exports = {
     env: {
       NODE_ENV: 'development',
       PORT: 3000,
-      PGCONNSTR: process.env.PGCONNSTR
+      PGCONNSTR: process.env.PGCONNSTR || 'postgres://localhost/my-novels-dev'
     },
     env_production: {
       NODE_ENV: 'production',
       PORT: 4000,
-      PGCONNSTR: process.env.PGCONNSTR
+      PGCONNSTR: process.env.PGCONNSTR || 'postgres://localhost/my-novels-prod'
     }
   }]
 };

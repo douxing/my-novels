@@ -1,4 +1,4 @@
-const client_config = require('../client/config');
+const client_config = require('../../client/config');
 
 if (!process.env.PGCONNSTR) {
   throw 'env.PGCONNSTR is NOT set...';
@@ -12,5 +12,5 @@ module.exports = {
   PGCONNSTR: process.env.PGCONNSTR,
   PORT: Number.parseInt(process.env.PORT),
   ACCOUNT_COOKIE: client_config.ACCOUNT_COOKIE,
-  HMAC_SECRET: HMAC_SECRET
+  HMAC_SECRET: process.env.HMAC_SECRET || HMAC_SECRET
 }

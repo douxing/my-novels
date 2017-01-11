@@ -84,7 +84,7 @@ exports.login = function (req, res) {
       if (!login_passport) {
         res.status(401).json({
           errors: [{
-            title: 'unauthorized123'
+            title: 'unauthorized'
           }]
         });
         return;
