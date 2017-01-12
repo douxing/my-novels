@@ -1,3 +1,6 @@
+# project files
+/server/config/env.js
+
 # npm dependencies
 node_modules/
 

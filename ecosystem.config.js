@@ -1,6 +1,6 @@
 module.exports = {
   apps: [{
-    name: 'my-novel-0',
+    name: 'my-novels-0',
     script: 'application.js',
     watch: true,
     ignore_watch: [
@@ -11,12 +11,12 @@ module.exports = {
     env: {
       NODE_ENV: 'development',
       PORT: 3000,
-      PGCONNSTR: process.env.PGCONNSTR || 'postgres://localhost/my-novels-dev'
+      PGCONNSTR: process.env.PGCONNSTR || 'postgres://localhost/my-novels-development'
     },
     env_production: {
       NODE_ENV: 'production',
       PORT: 4000,
-      PGCONNSTR: process.env.PGCONNSTR || 'postgres://localhost/my-novels-prod'
+      PGCONNSTR: process.env.PGCONNSTR || 'postgres://localhost/my-novels-production'
     }
   }]
 };
